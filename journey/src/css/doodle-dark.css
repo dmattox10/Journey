@@ -1,0 +1,113 @@
+/* doodle-dark.css
+   Dark-mode overrides for DoodleCSS.
+   Put this after importing the base doodle.css so these rules win.
+*/
+
+/* Theme activation:
+   - Option A: add class "doodle-dark" to <body> (e.g. <body class="doodle doodle-dark">)
+   - Option B: set [data-theme="dark"] on <html> or #root
+*/
+.doodle.doodle-dark,
+[data-theme="dark"] .doodle {
+  /* basic colors */
+  --doodle-bg: #0b0b0d;        /* page background */
+  --doodle-surface: #0f1720;   /* panels/cards */
+  --doodle-ink: #e6eef8;       /* primary text color (a soft light) */
+  --doodle-muted: #9aa9bf;     /* secondary text */
+  --doodle-accent: #66d1ff;    /* accent (buttons, links) */
+  --doodle-border: #263142;    /* doodle borders & strokes */
+  --doodle-shadow: 0 8px 20px rgba(0,0,0,0.7);
+}
+
+/* Apply to body like backgrounds */
+.doodle.doodle-dark body,
+[data-theme="dark"] .doodle body,
+.doodle.doodle-dark,
+[data-theme="dark"] .doodle {
+  background: var(--doodle-bg);
+  color: var(--doodle-ink);
+}
+
+/* Invert panels/cards */
+.doodle.doodle-dark .border,
+[data-theme="dark"] .doodle .border,
+.doodle.doodle-dark .panel,
+[data-theme="dark"] .doodle .panel {
+  background: var(--doodle-surface);
+  color: var(--doodle-ink);
+  border-color: var(--doodle-border);
+  box-shadow: var(--doodle-shadow);
+}
+
+/* Links and actionable text */
+.doodle.doodle-dark a,
+[data-theme="dark"] .doodle a {
+  color: var(--doodle-accent);
+}
+
+/* Buttons */
+.doodle.doodle-dark button,
+[data-theme="dark"] .doodle button {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  color: var(--doodle-ink);
+  border: 2px solid var(--doodle-border);
+  padding: 0.45rem 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: none;
+}
+.doodle.doodle-dark button:hover,
+[data-theme="dark"] .doodle button:hover {
+  border-color: var(--doodle-accent);
+  color: white;
+}
+
+/* Inputs */
+.doodle.doodle-dark input,
+.doodle.doodle-dark textarea,
+[data-theme="dark"] .doodle input,
+[data-theme="dark"] .doodle textarea {
+  background: rgba(255,255,255,0.02);
+  border: 1px dashed var(--doodle-border);
+  color: var(--doodle-ink);
+  padding: .5rem;
+  border-radius: 6px;
+}
+
+/* React Flow canvas surface (so nodes pop) */
+.doodle.doodle-dark .react-flow__viewport,
+[data-theme="dark"] .doodle .react-flow__viewport {
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.02));
+}
+
+/* Node card defaults you might use in Canvas nodes */
+.node-card {
+  background: var(--doodle-surface);
+  border: 2px dashed var(--doodle-border);
+  padding: 0.6rem;
+  border-radius: 10px;
+  color: var(--doodle-ink);
+}
+
+/* Thumbnail handling (if you show small images) */
+.node-card img {
+  max-width: 100%;
+  max-height: 64px;
+  display: block;
+  border-radius: 6px;
+  margin-bottom: .4rem;
+}
+
+/* small helper: invert svg fills that are black in doodle assets */
+.doodle.doodle-dark svg,
+[data-theme="dark"] .doodle svg {
+  filter: brightness(1.5) invert(0.9) saturate(1.2);
+}
+
+/* Accessibility: high contrast toggle (optional) */
+.doodle.doodle-dark.high-contrast,
+[data-theme="dark"] .doodle.high-contrast {
+  --doodle-ink: #ffffff;
+  --doodle-accent: #66ffff;
+  --doodle-border: #eee;
+}
